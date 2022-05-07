@@ -15,11 +15,11 @@ in
   buildDateTime = mkDefault 1645396670;
 
   source.manifest.rev = mkDefault (
-    if (config.deviceFamily == "raviole") then "android-12.1.0_r2"
+    if (config.deviceFamily == "raviole") then "android-12.1.0_r5"
     else "android-12.1.0_r1"
   );
   apv.buildID = mkDefault (
-    if (config.deviceFamily == "raviole") then "SP2A.220305.013.A3"
+    if (config.deviceFamily == "raviole") then "SP2A.220505.002"
     else "SP2A.220305.012"
   );
 
