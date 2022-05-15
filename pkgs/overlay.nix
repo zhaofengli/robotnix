@@ -1,4 +1,6 @@
 self: super: {
+  adevtool = super.callPackage ./adevtool {};
+
   android-emulator = super.callPackage ./android-emulator {};
 
   android-prepare-vendor = super.callPackage ./android-prepare-vendor {};

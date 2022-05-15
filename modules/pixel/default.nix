@@ -36,6 +36,10 @@ let
     oriole = { family = "raviole"; name = "Pixel 6"; };
   };
 
+  adevtoolStateFileMap = {
+    oriole = ./adevtool/oriole.json;
+  };
+
   # Make a uuid based on some string data
   uuidgen = str: let
     hash = builtins.hashString "sha256" str;
@@ -54,6 +58,11 @@ mkMerge [
 
     apv.img = mkDefault (fetchItem imgList);
     apv.ota = mkDefault (fetchItem otaList);
+
+    adevtool.stateFile = mkDefault adevtoolStateFileMap.${config.device};
+    adevtool.sepolicySourceDirs = [
+      "hardware/google/pixel-sepolicy"
+    ] ++ lib.optional (config.deviceFamily == "raviole") "device/google/gs101-sepolicy";
 
     # Exclude all devices by default
     source.excludeGroups = mkDefault (lib.attrNames deviceMap);
